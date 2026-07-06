@@ -12,6 +12,7 @@ import math
 import threading
 import rclpy
 from rclpy.node import Node
+from rclpy.parameter import Parameter
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import TransformStamped, Quaternion, Vector3, Point
 from tf2_ros import TransformBroadcaster
@@ -30,7 +31,8 @@ def yaw_to_quat(yaw):
 
 class GroundTruthOdom(Node):
     def __init__(self):
-        super().__init__('ground_truth_odom')
+        super().__init__('ground_truth_odom',
+                         parameter_overrides=[Parameter('use_sim_time', Parameter.Type.BOOL, True)])
         self.tf_broadcaster = TransformBroadcaster(self)
         self.odom_pub = self.create_publisher(Odometry, '/odom', 10)
 
@@ -159,7 +161,8 @@ class GroundTruthOdom(Node):
 
 
 def main():
-    rclpy.init()
+    import sys
+    rclpy.init(args=sys.argv + ['--ros-args', '-p', 'use_sim_time:=true'])
     node = GroundTruthOdom()
     try:
         rclpy.spin(node)
