@@ -57,6 +57,11 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(
+  PROGRAMS scripts/ground_truth_odom.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_export_include_directories(include)
 ament_export_dependencies(ament_cmake)
 ament_export_dependencies(rclcpp gazebo_ros2_control)

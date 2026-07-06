@@ -1,3 +1,14 @@
 controller_manager:
   ros__parameters:
     update_rate: 500
+
+joint_state_broadcaster:
+  ros__parameters:
+    type: joint_state_broadcaster/JointStateBroadcaster
+    joints:
+      - abad_L_joint
+      - hip_L_joint
+      - knee_L_joint
+      - abad_R_joint
+      - hip_R_joint
+      - knee_R_joint
