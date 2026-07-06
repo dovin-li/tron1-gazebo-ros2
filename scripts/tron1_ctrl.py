@@ -79,7 +79,6 @@ def cmd_watcher():
         try:
             with open('/tmp/tron1_cmd.json', 'r') as f:
                 ctrl.commands[:] = json.load(f)
-                print(f"[CMD] {ctrl.commands}")
         except:
             pass
         import time
