@@ -58,7 +58,7 @@ install(
 )
 
 install(
-  PROGRAMS scripts/ground_truth_odom.py
+  PROGRAMS scripts/sim/ground_truth_odom.py scripts/sim/joy_bridge.py scripts/real/cmd_vel_bridge.py scripts/common/tron1_ctrl.py scripts/common/tron1_web.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

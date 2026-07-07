@@ -1,5 +1,5 @@
 """
-tron1_nav.launch.py — TRON1 导航模式
+nav_sim.launch.py — TRON1 导航模式
 AMCL 定位 + nav2 导航栈 + rviz(导航界面)
 前提: Gazebo + ONNX 控制器 + ground_truth_odom + cmd_vel_bridge 已运行
       需要预先建好的地图文件

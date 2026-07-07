@@ -1,8 +1,8 @@
 """
-tron1_slam.launch.py — TRON1 建图模式
+slam_sim.launch.py — TRON1 建图模式
 启动: slam_toolbox + ground_truth_odom + rviz(建图界面)
 前提: Gazebo + ONNX 控制器已运行
-建完图后: 关闭此 launch，用 tron1_nav.launch.py 进入导航
+建完图后: 关闭此 launch，用 nav_sim.launch.py 进入导航
 """
 
 from launch import LaunchDescription
@@ -36,7 +36,7 @@ def generate_launch_description():
         ExecuteProcess(
             cmd=["/usr/bin/python3",
                  "/home/yhlee/limx_ws/src/tron1-gazebo-ros2"
-                 "/pointfoot_gazebo/scripts/ground_truth_odom.py"],
+                 "/pointfoot_gazebo/scripts/sim/ground_truth_odom.py"],
             name="ground_truth_odom",
             output="screen",
         ),
