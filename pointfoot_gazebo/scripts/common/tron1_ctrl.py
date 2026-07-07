@@ -74,6 +74,10 @@ ctrl = PointfootController(
 
 import json, numpy as np
 
+# reset stale commands on startup
+with open('/tmp/tron1_cmd.json', 'w') as f:
+    json.dump([0.0, 0.0, 0.0], f)
+
 def cmd_watcher():
     while True:
         try:
