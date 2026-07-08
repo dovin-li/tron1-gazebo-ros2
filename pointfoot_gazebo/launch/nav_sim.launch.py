@@ -5,6 +5,7 @@ AMCL 定位 + nav2 导航栈 + rviz(导航界面)
       需要预先建好的地图文件
 """
 from launch import LaunchDescription
+from launch.actions import ExecuteProcess
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import PathJoinSubstitution
@@ -22,6 +23,15 @@ def generate_launch_description():
     sim_true = {"use_sim_time": True}
 
     return LaunchDescription([
+        # === 里程计 (ground_truth_odom) ===
+        ExecuteProcess(
+            cmd=["/usr/bin/python3",
+                 "/home/yhlee/limx_ws/src/tron1-gazebo-ros2"
+                 "/pointfoot_gazebo/scripts/sim/ground_truth_odom.py"],
+            name="ground_truth_odom",
+            output="screen",
+        ),
+
         # === 静态 TF ===
         Node(
             package="tf2_ros",
@@ -58,7 +68,7 @@ def generate_launch_description():
             name="lifecycle_manager_localization",
             parameters=[{
                 "use_sim_time": True,
-                "autostart": False,
+                "autostart": True,
                 "node_names": ["map_server", "amcl"],
             }],
         ),
@@ -94,12 +104,12 @@ def generate_launch_description():
             name="lifecycle_manager_navigation",
             parameters=[{
                 "use_sim_time": True,
-                "autostart": False,
+                "autostart": True,
                 "node_names": [
-                    "planner_server",
                     "controller_server",
-                    "bt_navigator",
+                    "planner_server",
                     "behavior_server",
+                    "bt_navigator",
                 ],
             }],
         ),
