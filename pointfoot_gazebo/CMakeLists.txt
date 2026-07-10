@@ -31,7 +31,7 @@ link_directories(
 
 ## Declare a cpp library
 
-add_library(poinfoot_gazebo_hardware_plugin SHARED src/PointFootHWSim.cpp)
+add_library(poinfoot_gazebo_hardware_plugin SHARED src/PointFootHWSim.cpp src/Tron2HWSim.cpp)
 
 target_include_directories(poinfoot_gazebo_hardware_plugin PRIVATE include)
 
